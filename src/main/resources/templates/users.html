@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<title>Users</title>
+</head>
+<body>
+	<h1>Users</h1>
+	<div th:each="user : ${users}">
+		<a th:href="@{'/user/' + ${user.userId}}"><span
+			th:text="${user.userId}"></span></a><br /> <span
+			th:text="${user.username}"></span><br /> <span
+			th:text="${user.name}"></span><br /> <span
+			th:text="${user.password}"></span>
+		<div th:if="${#lists.size(user.accounts) > 0}">
+			<div th:each="account : ${user.accounts}">
+				<a th:href="@{'/users/' + ${user.userId} + '/accounts/' + ${account.accountId}}">
+					<span th:text="${account.accountName}"> </span>
+				</a>
+			</div>
+		</div>
+		<hr />
+	</div>
+</body>
+</html>
